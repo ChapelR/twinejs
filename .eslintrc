@@ -1,48 +1,64 @@
 {
-    "rules": {
-		"brace-style": [
-			2,
-			"stroustrup",
-			{ "allowSingleLine": true }
-		],
-        "comma-dangle": 0,
-		"curly": [2, "all"],
-		"indent": [
-			2,
-			"tab",
-			{ "SwitchCase": 1 }
-		],
-		"max-len": [
-			2,
-			80,
+	"env": {
+		"browser": true,
+		"es6": true,
+		"commonjs": true,
+		"node": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:jest/recommended",
+		"plugin:vue/essential",
+		"plugin:vue-i18n/recommended",
+		"@vue/prettier"
+	],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true
+		},
+		"ecmaVersion": 8,
+		"sourceType": "module",
+		"parser": "babel-eslint"
+	},
+	"plugins": ["jest"],
+	"rules": {
+		"no-mixed-spaces-and-tabs": [2, "smart-tabs"],
+		"padding-line-between-statements": [
+			"error",
+			{"blankLine": "always", "prev": "*", "next": "block-like"},
+			{"blankLine": "always", "prev": "block-like", "next": "*"},
+			{"blankLine": "always", "prev": ["const", "let", "var"], "next": "*"},
 			{
-				"ignoreUrls": true,
-				"ignoreStrings": true,
-				"ignoreTemplateLiterals": true
+				"blankLine": "any",
+				"prev": ["const", "let", "var"],
+				"next": ["const", "let", "var"]
 			}
-		],
-		"newline-after-var": [2, "always"],
-		"no-console": [
-			2,
-			{ "allow": ["warn"] }	
-		],
-        "no-extra-semi": 0,
-        "no-mixed-spaces-and-tabs": 0,
-		"no-trailing-spaces": [
-			2,
-			{ "skipBlankLines": true }
-		],
-		"quote-props": 0,
-        "semi": [
-            2,
-            "always"
-        ],
-    },
-    "env": {
-        "browser": true,
-        "es6": true,
-        "commonjs": true,
-        "node": true
-    },
-    "extends": "eslint:recommended"
+		]
+	},
+	"root": true,
+	"settings": {
+		"vue-i18n": {
+			"localeDir": "./src/locales/en-us.json"
+		}
+	},
+	"overrides": [
+		{
+			"files": [
+				"**/__tests__/*.{j,t}s?(x)",
+				"**/tests/unit/**/*.spec.{j,t}s?(x)"
+			],
+			"env": {
+				"jest": true
+			},
+			"rules": {
+				"vue-i18n/no-raw-text": [0]
+			}
+		},
+		{
+			"files": ["**/*.stories.*"],
+			"rules": {
+				"vue-i18n/no-raw-text": [0]
+			}
+		}
+	]
 }

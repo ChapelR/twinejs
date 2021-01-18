@@ -8,5 +8,8 @@ doc/*
 cache
 dist-apps
 build
-nw-cache
-nwbuilder-cache
+coverage/
+
+
+#Electron-builder output
+/dist_electron
